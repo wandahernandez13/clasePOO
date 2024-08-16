@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agregar Producto</title>
+</head>
+<body>
+  <h1>Agregar Nuevo Producto</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.errors %} <!-- Verifica si hay errores en el formulario -->
+      <ul>
+        {% for field in form %}
+          {% if field.errors %}  <!-- Muestra errores específicos de cada campo -->
+            <li>{{ field.label }}: {{ field.errors }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <button type ="submit">Guardar Producto</button>
+  </form>
+  <a href="{% url 'listar_productos' %}">Ver Productos</a>
+  <a href="{% url 'listar_clientes' %}">Ver Clientes</a>
+</body>
+</html>
